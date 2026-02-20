@@ -1,5 +1,5 @@
 import gleam/int
-import twig.{type Attr, type Content, make_attr, node}
+import twig.{type Attr, type Content, make_attr, multi_node, node}
 
 /// Phantom type for heading attributes.
 pub type HeadingAttr
@@ -89,7 +89,7 @@ pub fn bullet_list(
   attrs: List(Attr(ListAttr)),
   children: List(Content),
 ) -> Content {
-  node("list", attrs, children)
+  multi_node("list", attrs, children)
 }
 
 /// Phantom type for strong attributes.

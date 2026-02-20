@@ -1,5 +1,5 @@
 name = "twig"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Gleam library for generating Typst documents"
 licences = ["Apache-2.0"]
 repository = { type = "github", user = "emylvanderkooi", repo = "twig" }
