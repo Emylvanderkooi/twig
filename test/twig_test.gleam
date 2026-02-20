@@ -83,9 +83,9 @@ pub fn nested_test() {
 }
 
 pub fn line_break_test() {
-	twig.Sequence([text.text("Hello"), text.line_break(), text.text("World")])
-	|> twig.render()
-	|> should.equal("Hello\n\nWorld")
+  twig.Sequence([text.text("Hello"), text.line_break(), text.text("World")])
+  |> twig.render()
+  |> should.equal("Hello\n\nWorld")
 }
 
 pub fn document_test() {

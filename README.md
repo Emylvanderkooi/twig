@@ -35,7 +35,7 @@ pub fn main() {
 ```
 
 Which outputs valid Typst markup:
-```typst
+```
 #heading(level: 1)[My Document]
 #heading(level: 2)[Introduction]
 #strong[Welcome to Twig. ]
