@@ -1,6 +1,4 @@
 name = "twig"
-version = "1.0.0"
-
 version = "0.1.0"
 description = "A Gleam library for generating Typst documents"
 licences = ["Apache-2.0"]
