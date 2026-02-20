@@ -1,0 +1,13 @@
+name = "twig"
+version = "1.0.0"
+
+version = "0.1.0"
+description = "A Gleam library for generating Typst documents"
+licences = ["Apache-2.0"]
+repository = { type = "github", user = "emylvanderkooi", repo = "twig" }
+
+[dependencies]
+gleam_stdlib = ">= 0.44.0 and < 2.0.0"
+
+[dev-dependencies]
+gleeunit = ">= 1.0.0 and < 2.0.0"
