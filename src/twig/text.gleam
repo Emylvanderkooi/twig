@@ -1,4 +1,5 @@
-import twig.{type Content, Text}
+import gleam/int
+import twig.{type Content, Text, make_positional, node}
 
 /// Creates a plain text element.
 ///
@@ -25,4 +26,8 @@ pub fn text(s: String) -> Content {
 /// ```
 pub fn line_break() -> Content {
   text("\n\n")
+}
+
+pub fn lorem(words: Int) -> Content {
+  node("lorem", [make_positional(int.to_string(words))], [])
 }

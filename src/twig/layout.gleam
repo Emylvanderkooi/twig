@@ -117,7 +117,7 @@ fn render_alignment(a: Alignment) -> String {
 /// ## Example
 /// ```gleam
 /// align(Both(Center, Horizon), [text("Hello"), text("World")])
-/// // -> "#align(center + horizon)[Hello\nWorld]"
+/// // -> "#align(center + horizon)[Hello World]"
 /// ```
 pub fn align(alignment: Alignment, children: List(Content)) -> Content {
   node("align", [make_positional(render_alignment(alignment))], children)

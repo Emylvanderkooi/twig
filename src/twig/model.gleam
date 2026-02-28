@@ -1,4 +1,7 @@
+import gleam/float
 import gleam/int
+import gleam/list
+import gleam/string
 import twig.{type Attr, type Content, make_attr, multi_node, node}
 
 /// Phantom type for heading attributes.
@@ -118,4 +121,78 @@ pub fn strong(attrs: List(Attr(StrongAttr)), children: List(Content)) -> Content
 /// ```
 pub fn emph(attrs: List(Attr(EmphAttr)), children: List(Content)) -> Content {
   node("emph", attrs, children)
+}
+
+pub type Length {
+  Pt(Float)
+  Mm(Float)
+  Cm(Float)
+  In(Float)
+  Em(Float)
+}
+
+/// Renders a `Length` value to its Typst string representation.
+fn render_length(l: Length) -> String {
+  case l {
+    Pt(n) -> float.to_string(n) <> "pt"
+    Mm(n) -> float.to_string(n) <> "mm"
+    Cm(n) -> float.to_string(n) <> "cm"
+    In(n) -> float.to_string(n) <> "in"
+    Em(n) -> float.to_string(n) <> "em"
+  }
+}
+
+pub type TrackSize {
+  Auto
+  Fr(Float)
+  Percent(Float)
+  Fixed(Length)
+}
+
+fn render_track_size(ts: TrackSize) -> String {
+  case ts {
+    Auto -> "auto"
+    Fr(n) -> float.to_string(n) <> "fr"
+    Percent(n) -> float.to_string(n) <> "%"
+    Fixed(l) -> render_length(l)
+  }
+}
+
+pub type TableAttr
+
+pub fn columns(cs: List(TrackSize)) -> Attr(TableAttr) {
+  make_attr(
+    "columns",
+    "(" <> { cs |> list.map(render_track_size) |> string.join(", ") } <> ")",
+  )
+}
+
+pub fn rows(cs: List(TrackSize)) -> Attr(TableAttr) {
+  make_attr(
+    "rows",
+    "(" <> { cs |> list.map(render_track_size) |> string.join(", ") } <> ")",
+  )
+}
+
+pub fn gutter(cs: List(TrackSize)) -> Attr(TableAttr) {
+  make_attr(
+    "gutter",
+    "(" <> { cs |> list.map(render_track_size) |> string.join(", ") } <> ")",
+  )
+}
+
+pub fn inset(size: Length) -> Attr(TableAttr) {
+  make_attr("inset", render_length(size))
+}
+
+pub type Stroke {
+  NoStroke
+  StrokeSize(Length)
+}
+
+pub fn stroke(s: Stroke) -> Attr(TableAttr) {
+  case s {
+    NoStroke -> make_attr("stroke", "none")
+    StrokeSize(l) -> make_attr("stroke", render_length(l))
+  }
 }
